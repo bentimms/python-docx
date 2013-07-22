@@ -141,7 +141,7 @@ def pagebreak(type='page', orient='portrait'):
     return pagebreak
 
 
-def paragraph(paratext, style='BodyText', breakbefore=False, jc='left'):
+def paragraph(paratext, style='BodyText',rStyle=None, breakbefore=False, jc='left'):
     '''Make a new paragraph element, containing a run, and some text.
     Return the paragraph element.
 
@@ -195,6 +195,9 @@ def paragraph(paratext, style='BodyText', breakbefore=False, jc='left'):
         if t[1].find('i') > -1:
             i = makeelement('i')
             rPr.append(i)
+        if rStyle is not None:
+            rStyle=makeelement('rStyle', attributes={'val': rStyle})
+            rPr.append(rStyle)
         run.append(rPr)
         # Insert lastRenderedPageBreak for assistive technologies like
         # document narrators to know when a page break occurred.
