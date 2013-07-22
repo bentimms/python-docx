@@ -16,58 +16,66 @@
         </w:pPrDefault>
     </w:docDefaults>
     <w:latentStyles w:defLockedState="0" w:defUIPriority="0" w:defSemiHidden="0" w:defUnhideWhenUsed="0" w:defQFormat="0" w:count="276"/>
-    <w:style w:type="paragraph" w:default="1" w:styleId="Normal">
-        <w:name w:val="Normal"/>
-        <w:qFormat/>
-        <w:rsid w:val="000D33D5"/>
-    </w:style>
-    <w:style w:type="paragraph" w:styleId="Heading1">
-        <w:name w:val="heading 1"/>
-        <w:basedOn w:val="Normal"/>
-        <w:next w:val="Normal"/>
-        <w:link w:val="Heading1Char"/>
-        <w:uiPriority w:val="9"/>
-        <w:qFormat/>
-        <w:rsid w:val="00E315A3"/>
-        <w:pPr>
-            <w:keepNext/>
-            <w:keepLines/>
-            <w:spacing w:before="480" w:after="0"/>
-            <w:outlineLvl w:val="0"/>
-        </w:pPr>
-        <w:rPr>
-            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi"/>
-            <w:b/>
-            <w:bCs/>
-            <w:color w:val="345A8A" w:themeColor="accent1" w:themeShade="B5"/>
-            <w:sz w:val="32"/>
-            <w:szCs w:val="32"/>
-        </w:rPr>
-    </w:style>
-    <w:style w:type="paragraph" w:styleId="Heading2">
-        <w:name w:val="heading 2"/>
-        <w:basedOn w:val="Normal"/>
-        <w:next w:val="Normal"/>
-        <w:link w:val="Heading2Char"/>
-        <w:uiPriority w:val="9"/>
-        <w:unhideWhenUsed/>
-        <w:qFormat/>
-        <w:rsid w:val="00E315A3"/>
-        <w:pPr>
-            <w:keepNext/>
-            <w:keepLines/>
-            <w:spacing w:before="200" w:after="0"/>
-            <w:outlineLvl w:val="1"/>
-        </w:pPr>
-        <w:rPr>
-            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi"/>
-            <w:b/>
-            <w:bCs/>
-            <w:color w:val="4F81BD" w:themeColor="accent1"/>
-            <w:sz w:val="26"/>
-            <w:szCs w:val="26"/>
-        </w:rPr>
-    </w:style>
+	<w:style w:type="paragraph" w:default="1" w:styleId="Normal">
+		<w:name w:val="Normal"/>
+		<w:qFormat/>
+		<w:rsid w:val="004E26E4"/>
+		<w:pPr>
+			<w:spacing w:before="60" w:after="120" w:line="264" w:lineRule="auto"/>
+		</w:pPr>
+		<w:rPr>
+			<w:rFonts w:ascii="Avenir Book" w:hAnsi="Avenir Book"/>
+		</w:rPr>
+	</w:style>
+	<w:style w:type="paragraph" w:styleId="Heading1">
+		<w:name w:val="heading 1"/>
+		<w:basedOn w:val="Normal"/>
+		<w:next w:val="Normal"/>
+		<w:link w:val="Heading1Char"/>
+		<w:uiPriority w:val="9"/>
+		<w:qFormat/>
+		<w:rsid w:val="00956AE4"/>
+		<w:pPr>
+			<w:keepNext/>
+			<w:keepLines/>
+			<w:pageBreakBefore/>
+			<w:pBdr>
+				<w:bottom w:val="single" w:sz="4" w:space="1" w:color="auto"/>
+			</w:pBdr>
+			<w:spacing w:after="320"/>
+			<w:outlineLvl w:val="0"/>
+		</w:pPr>
+		<w:rPr>
+			<w:rFonts w:ascii="Avenir Heavy" w:eastAsiaTheme="majorEastAsia" w:hAnsi="Avenir Heavy" w:cstheme="majorBidi"/>
+			<w:bCs/>
+			<w:sz w:val="40"/>
+			<w:szCs w:val="32"/>
+		</w:rPr>
+	</w:style>
+
+	<w:style w:type="paragraph" w:styleId="Heading2">
+		<w:name w:val="heading 2"/>
+		<w:basedOn w:val="Normal"/>
+		<w:next w:val="Body"/>
+		<w:link w:val="Heading2Char"/>
+		<w:uiPriority w:val="9"/>
+		<w:unhideWhenUsed/>
+		<w:qFormat/>
+		<w:rsid w:val="00956AE4"/>
+		<w:pPr>
+			<w:keepNext/>
+			<w:keepLines/>
+			<w:spacing w:before="200" w:after="0"/>
+			<w:outlineLvl w:val="1"/>
+		</w:pPr>
+		<w:rPr>
+			<w:rFonts w:ascii="Avenir Black" w:eastAsiaTheme="majorEastAsia" w:hAnsi="Avenir Black" w:cstheme="majorBidi"/>
+			<w:bCs/>
+			<w:sz w:val="26"/>
+			<w:szCs w:val="26"/>
+		</w:rPr>
+	</w:style>
+
     <w:style w:type="character" w:default="1" w:styleId="DefaultParagraphFont">
         <w:name w:val="Default Paragraph Font"/>
         <w:semiHidden/>
@@ -175,21 +183,19 @@
             </w:tcPr>
         </w:tblStylePr>
     </w:style>
-    <w:style w:type="character" w:customStyle="1" w:styleId="Heading1Char">
-        <w:name w:val="Heading 1 Char"/>
-        <w:basedOn w:val="DefaultParagraphFont"/>
-        <w:link w:val="Heading1"/>
-        <w:uiPriority w:val="9"/>
-        <w:rsid w:val="00E315A3"/>
-        <w:rPr>
-            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi"/>
-            <w:b/>
-            <w:bCs/>
-            <w:color w:val="345A8A" w:themeColor="accent1" w:themeShade="B5"/>
-            <w:sz w:val="32"/>
-            <w:szCs w:val="32"/>
-        </w:rPr>
-    </w:style>
+	<w:style w:type="character" w:customStyle="1" w:styleId="Heading1Char">
+		<w:name w:val="Heading 1 Char"/>
+		<w:basedOn w:val="DefaultParagraphFont"/>
+		<w:link w:val="Heading1"/>
+		<w:uiPriority w:val="9"/>
+		<w:rsid w:val="00956AE4"/>
+		<w:rPr>
+			<w:rFonts w:ascii="Avenir Heavy" w:eastAsiaTheme="majorEastAsia" w:hAnsi="Avenir Heavy" w:cstheme="majorBidi"/>
+			<w:bCs/>
+			<w:sz w:val="40"/>
+			<w:szCs w:val="32"/>
+		</w:rPr>
+	</w:style>
     <w:style w:type="character" w:customStyle="1" w:styleId="Heading2Char">
         <w:name w:val="Heading 2 Char"/>
         <w:basedOn w:val="DefaultParagraphFont"/>
@@ -205,6 +211,30 @@
             <w:szCs w:val="26"/>
         </w:rPr>
     </w:style>
+	<w:style w:type="paragraph" w:customStyle="1" w:styleId="GlyphCodePoint">
+		<w:name w:val="Glyph Code Point"/>
+		<w:basedOn w:val="Normal"/>
+		<w:qFormat/>
+		<w:rsid w:val="00956AE4"/>
+		<w:pPr>
+			<w:spacing w:before="20" w:after="0" w:line="240" w:lineRule="auto"/>
+		</w:pPr>
+		<w:rPr>
+			<w:sz w:val="16"/>
+		</w:rPr>
+	</w:style>
+	<w:style w:type="paragraph" w:customStyle="1" w:styleId="GlyphDescription">
+		<w:name w:val="Glyph Description"/>
+		<w:basedOn w:val="Normal"/>
+		<w:qFormat/>
+		<w:rsid w:val="00956AE4"/>
+		<w:pPr>
+			<w:spacing w:before="40" w:after="0"/>
+		</w:pPr>
+		<w:rPr>
+			<w:sz w:val="12"/>
+		</w:rPr>
+	</w:style>
     <w:style w:type="paragraph" w:styleId="ListBullet">
         <w:name w:val="List Bullet"/>
         <w:basedOn w:val="Normal"/>
@@ -242,4 +272,16 @@
         <w:link w:val="BodyText"/>
         <w:rsid w:val="00BC48D5"/>
     </w:style>
+	<w:style w:type="character" w:customStyle="1" w:styleId="Musicsymbols">
+		<w:name w:val="Music symbols"/>
+		<w:basedOn w:val="DefaultParagraphFont"/>
+		<w:uiPriority w:val="1"/>
+		<w:qFormat/>
+		<w:rsid w:val="000E175E"/>
+		<w:rPr>
+			<w:rFonts w:ascii="Bravura" w:hAnsi="Bravura"/>
+			<w:sz w:val="40"/>
+			<w:szCs w:val="40"/>
+		</w:rPr>
+	</w:style>
 </w:styles>

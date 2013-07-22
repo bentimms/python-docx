@@ -42,6 +42,20 @@
 		<w:pitch w:val="variable"/>
 		<w:sig w:usb0="00000003" w:usb1="00000000" w:usb2="00000000" w:usb3="00000000" w:csb0="00000001" w:csb1="00000000"/>
 	</w:font>
+    <w:font w:name="Bravura">
+        <w:panose1 w:val="05060000000000000000"/>
+        <w:charset w:val="00"/>
+        <w:family w:val="auto"/>
+        <w:pitch w:val="variable"/>
+        <w:sig w:usb0="00000003" w:usb1="12004000" w:usb2="01000000" w:usb3="00000000" w:csb0="00000001" w:csb1="00000000"/>
+    </w:font>
+    <w:font w:name="Opus Text Std">
+        <w:panose1 w:val="02000400000000000000"/>
+        <w:charset w:val="00"/>
+        <w:family w:val="auto"/>
+        <w:pitch w:val="variable"/>
+        <w:sig w:usb0="00000003" w:usb1="00000000" w:usb2="00000000" w:usb3="00000000" w:csb0="00000001" w:csb1="00000000"/>
+    </w:font>
 	<w:font w:name="Arial">
 		<w:panose1 w:val="020B0604020202020204"/>
 		<w:charset w:val="00"/>
@@ -49,4 +63,18 @@
 		<w:pitch w:val="variable"/>
 		<w:sig w:usb0="00000003" w:usb1="00000000" w:usb2="00000000" w:usb3="00000000" w:csb0="00000001" w:csb1="00000000"/>
 	</w:font>
+    <w:font w:name="Avenir Book">
+        <w:panose1 w:val="02000503020000020003"/>
+        <w:charset w:val="00"/>
+        <w:family w:val="auto"/>
+        <w:pitch w:val="variable"/>
+        <w:sig w:usb0="800000AF" w:usb1="5000204A" w:usb2="00000000" w:usb3="00000000" w:csb0="0000009B" w:csb1="00000000"/>
+    </w:font>
+    <w:font w:name="Avenir Heavy">
+        <w:panose1 w:val="020B0703020203020204"/>
+        <w:charset w:val="00"/>
+        <w:family w:val="auto"/>
+        <w:pitch w:val="variable"/>
+        <w:sig w:usb0="800000AF" w:usb1="5000204A" w:usb2="00000000" w:usb3="00000000" w:csb0="0000009B" w:csb1="00000000"/>
+    </w:font>    
 </w:fonts>
