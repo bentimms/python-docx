@@ -384,6 +384,11 @@ def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, tblLook='0400
                 wattr = {'w': '0', 'type': 'auto'}
             cellwidth = makeelement('tcW', attributes=wattr)
             cellprops.append(cellwidth)
+            if content == '':
+                cellstyle = makeelement('shd', attributes={'val': 'clear',
+                                                           'color': 'auto',
+                                                           'fill': 'BFBFBF'})
+                cellprops.append(cellstyle)
             cell.append(cellprops)
             # Paragraph (Content)
             if not isinstance(content, (list, tuple)):
@@ -395,7 +400,7 @@ def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, tblLook='0400
                     if celstyle and 'align' in celstyle[i].keys():
                         align = celstyle[i]['align']
                     else:
-                        align = 'left'
+                        align = 'center'
                     cell.append(paragraph(c, jc=align))
             row.append(cell)
             i += 1
