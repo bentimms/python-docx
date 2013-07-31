@@ -269,7 +269,7 @@ def heading(headingtext, headinglevel, lang='en'):
     return paragraph
 
 
-def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, twunit='auto', borders={}, celstyle=None):
+def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, tblLook='0400', tblStyle='', twunit='auto', borders={}, celstyle=None):
     """
     Return a table element based on specified parameters
 
@@ -311,7 +311,7 @@ def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, twunit='auto'
     columns = len(contents[0])
     # Table properties
     tableprops = makeelement('tblPr')
-    tablestyle = makeelement('tblStyle', attributes={'val': ''})
+    tablestyle = makeelement('tblStyle', attributes={'val': tblStyle})
     tableprops.append(tablestyle)
     tablewidth = makeelement('tblW', attributes={'w': str(tblw), 'type': str(twunit)})
     tableprops.append(tablewidth)
@@ -326,7 +326,7 @@ def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, twunit='auto'
                 borderelem = makeelement(b, attributes=attrs)
                 tableborders.append(borderelem)
         tableprops.append(tableborders)
-    tablelook = makeelement('tblLook', attributes={'val': '0400'})
+    tablelook = makeelement('tblLook', attributes={'val': tblLook})
     tableprops.append(tablelook)
     table.append(tableprops)
     # Table Grid
