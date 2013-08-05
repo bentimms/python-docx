@@ -373,8 +373,16 @@ def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, tblLook='0400
             i += 1
         table.append(row)
     # Contents Rows
-    for contentrow in contents[1 if heading else 0:]:
+    for rowidx, contentrow in enumerate(contents[1 if heading else 0:]):
         row = makeelement('tr')
+        rowprops = makeelement('trPr')
+        if rowidx == len(contents)-1:
+            rowHeight = makeelement('trHeight', attributes={'val' : '800', 'hRule' : 'atLeast'})
+            rowprops.append(rowHeight)
+        elif rowidx == 1:
+            rowHeight = makeelement('trHeight', attributes={'val' : '1020', 'hRule' : 'atLeast'})
+            rowprops.append(rowHeight)
+        row.append(rowprops)
         i = 0
         for content in contentrow:
             cell = makeelement('tc')
