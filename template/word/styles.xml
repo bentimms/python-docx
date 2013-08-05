@@ -230,6 +230,7 @@
 		<w:rsid w:val="00956AE4"/>
 		<w:pPr>
 			<w:spacing w:before="40" w:after="0"/>
+			<w:textAlignment w:val="top"/>
 		</w:pPr>
 		<w:rPr>
 			<w:sz w:val="12"/>
@@ -310,9 +311,6 @@
 				<w:right w:w="108" w:type="dxa"/>
 			</w:tblCellMar>
 		</w:tblPr>
-		<w:tcPr>
-			<w:vAlign w:val="center"/>
-		</w:tcPr>
 		<w:tblStylePr w:type="firstRow">
 			<w:pPr>
 				<w:jc w:val="left"/>
@@ -334,6 +332,9 @@
 			<w:tcPr>
 				<w:vAlign w:val="top"/>
 			</w:tcPr>
+			<w:trPr>
+			    <w:trHeight w:val="1440" w:hRule="exact"/>
+			</w:trPr>
 		</w:tblStylePr>
 	</w:style>
 </w:styles>
