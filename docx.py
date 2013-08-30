@@ -165,6 +165,22 @@ def paragraph(paratext, style='BodyText',rStyle=None, breakbefore=False, jc='lef
     # Make our elements
     paragraph = makeelement('p')
 
+    pPr = makeelement('pPr')
+    if isinstance(paratext, dict):
+        if 'properties' in paratext:
+            for row_property in paratext['properties']:
+                pPr.append(row_property)
+        if 'content' in paratext:
+            paratext = paratext['content']
+
+    pStyle = makeelement('pStyle', attributes={'val': style})
+    pJc = makeelement('jc', attributes={'val': jc})
+    pTa = makeelement('textAlignment', attributes={'val': textAlignment})
+    pPr.append(pTa)
+    pPr.append(pStyle)
+    pPr.append(pJc)
+
+
     if isinstance(paratext, list):
         text = []
         for pt in paratext:
@@ -174,13 +190,7 @@ def paragraph(paratext, style='BodyText',rStyle=None, breakbefore=False, jc='lef
                 text.append([makeelement('t', tagtext=pt), ''])
     else:
         text = [[makeelement('t', tagtext=paratext), ''], ]
-    pPr = makeelement('pPr')
-    pStyle = makeelement('pStyle', attributes={'val': style})
-    pJc = makeelement('jc', attributes={'val': jc})
-    pTa = makeelement('textAlignment', attributes={'val': textAlignment})
-    pPr.append(pTa)
-    pPr.append(pStyle)
-    pPr.append(pJc)
+
 
     # Add the text the run, and the run to the paragraph
     paragraph.append(pPr)
@@ -373,32 +383,38 @@ def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, tblLook='0400
             i += 1
         table.append(row)
     # Contents Rows
-    for rowidx, contentrow in enumerate(contents[1 if heading else 0:]):
+    for contentrow in contents[1 if heading else 0:]:
+
         row = makeelement('tr')
         rowprops = makeelement('trPr')
-        if rowidx == len(contents)-1:
-            rowHeight = makeelement('trHeight', attributes={'val' : '800', 'hRule' : 'atLeast'})
-            rowprops.append(rowHeight)
-        elif rowidx == 1:
-            rowHeight = makeelement('trHeight', attributes={'val' : '1020', 'hRule' : 'atLeast'})
-            rowprops.append(rowHeight)
+        
+        if isinstance(contentrow, dict):
+            if 'properties' in contentrow:
+                for row_property in contentrow['properties']:
+                    rowprops.append(row_property)
+            if 'cells' in contentrow:
+                contentrow = contentrow['cells']
+        
         row.append(rowprops)
         i = 0
         for content in contentrow:
             cell = makeelement('tc')
+            
             # Properties
             cellprops = makeelement('tcPr')
+            if isinstance(content, dict):
+                if 'properties' in content:
+                    for cell_property in content['properties']:
+                        cellprops.append(cell_property)
+                if 'contents' in content:
+                    content = content['contents']
+            
             if colw:
                 wattr = {'w': str(colw[i]), 'type': cwunit}
             else:
                 wattr = {'w': '0', 'type': 'auto'}
             cellwidth = makeelement('tcW', attributes=wattr)
             cellprops.append(cellwidth)
-            if content == '':
-                cellstyle = makeelement('shd', attributes={'val': 'clear',
-                                                           'color': 'auto',
-                                                           'fill': 'BFBFBF'})
-                cellprops.append(cellstyle)
             cell.append(cellprops)
             # Paragraph (Content)
             if not isinstance(content, (list, tuple)):
