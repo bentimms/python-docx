@@ -236,6 +236,20 @@
 			<w:sz w:val="12"/>
 		</w:rPr>
 	</w:style>
+	<w:style w:type="paragraph" w:customStyle="1" w:styleId="GlyphDescriptionCondensed">
+		<w:name w:val="Glyph Description"/>
+		<w:basedOn w:val="Normal"/>
+		<w:qFormat/>
+		<w:rsid w:val="00956AE4"/>
+		<w:pPr>
+			<w:spacing w:before="40" w:after="0"/>
+			<w:textAlignment w:val="top"/>
+		</w:pPr>
+		<w:rPr>
+			<w:sz w:val="12"/>
+			<w:rFonts w:ascii="Avenir Next Condensed Regular" w:hAnsi="Avenir Next Condensed Regular"/>
+		</w:rPr>
+	</w:style>
     <w:style w:type="paragraph" w:styleId="ListBullet">
         <w:name w:val="List Bullet"/>
         <w:basedOn w:val="Normal"/>
