@@ -236,20 +236,6 @@
 			<w:sz w:val="12"/>
 		</w:rPr>
 	</w:style>
-	<w:style w:type="paragraph" w:customStyle="1" w:styleId="GlyphDescriptionCondensed">
-		<w:name w:val="Glyph Description"/>
-		<w:basedOn w:val="Normal"/>
-		<w:qFormat/>
-		<w:rsid w:val="00956AE4"/>
-		<w:pPr>
-			<w:spacing w:before="40" w:after="0"/>
-			<w:textAlignment w:val="top"/>
-		</w:pPr>
-		<w:rPr>
-			<w:sz w:val="12"/>
-			<w:rFonts w:ascii="Avenir Next Condensed Regular" w:hAnsi="Avenir Next Condensed Regular"/>
-		</w:rPr>
-	</w:style>
     <w:style w:type="paragraph" w:styleId="ListBullet">
         <w:name w:val="List Bullet"/>
         <w:basedOn w:val="Normal"/>
@@ -299,6 +285,32 @@
 			<w:szCs w:val="40"/>
 		</w:rPr>
 	</w:style>
+	<w:style w:type="paragraph" w:customStyle="1" w:styleId="Tabletext">
+		<w:name w:val="Table text"/>
+		<w:basedOn w:val="BodyText"/>
+		<w:qFormat/>
+		<w:rsid w:val="00DE6661"/>
+		<w:pPr>
+			<w:spacing w:after="60"/>
+			<w:ind w:left="0"/>
+		</w:pPr>
+		<w:rPr>
+			<w:sz w:val="20"/>
+		</w:rPr>
+	</w:style>
+	<w:style w:type="paragraph" w:customStyle="1" w:styleId="TabletextCondensed">
+		<w:name w:val="Table Text Condensed"/>
+		<w:basedOn w:val="Tabletext"/>
+		<w:qFormat/>
+		<w:pPr>
+			<w:spacing w:before="40" w:after="0"/>
+			<w:textAlignment w:val="top"/>
+		</w:pPr>
+		<w:rPr>
+			<w:sz w:val="20"/>
+			<w:rFonts w:ascii="Avenir Next Condensed Regular" w:hAnsi="Avenir Next Condensed Regular"/>
+		</w:rPr>
+	</w:style>
 	<w:style w:type="table" w:customStyle="1" w:styleId="GlyphTable">
 		<w:name w:val="GlyphTable"/>
 		<w:basedOn w:val="TableNormal"/>
@@ -310,15 +322,14 @@
 		</w:pPr>
 		<w:tblPr>
 			<w:tblInd w:w="0" w:type="dxa"/>
-			<w:tblBorders>
+			<!-- <w:tblBorders>
 				<w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
 				<w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
 				<w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
 				<w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
 				<w:insideH w:val="single" w:sz="4" w:space="0" w:color="auto"/>
 				<w:insideV w:val="single" w:sz="4" w:space="0" w:color="auto"/>
-			</w:tblBorders>
-			<w:tblCellMar>
+			</w:tblBorders> -->			<w:tblCellMar>
 				<w:top w:w="0" w:type="dxa"/>
 				<w:left w:w="108" w:type="dxa"/>
 				<w:bottom w:w="0" w:type="dxa"/>
