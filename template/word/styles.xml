@@ -299,7 +299,7 @@
 		</w:rPr>
 	</w:style>
 	<w:style w:type="paragraph" w:customStyle="1" w:styleId="TabletextCondensed">
-		<w:name w:val="Table Text Condensed"/>
+		<w:name w:val="Table text condensed"/>
 		<w:basedOn w:val="Tabletext"/>
 		<w:qFormat/>
 		<w:pPr>
