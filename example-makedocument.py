@@ -89,7 +89,7 @@ if __name__ == '__main__':
     print 'done.'
 
     # Add a pagebreak
-    body.append(pagebreak(type='page', orient='portrait'))
+    body.append(pagebreak(break_type='page', orient='portrait'))
 
     body.append(heading('Ideas? Questions? Want to contribute?', 2))
     body.append(paragraph('Email <python.docx@librelist.com>'))
