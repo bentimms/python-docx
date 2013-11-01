@@ -20,6 +20,8 @@ import re
 import time
 import os
 from os.path import join
+import pprint
+import tempfile
 
 log = logging.getLogger(__name__)
 
@@ -67,8 +69,13 @@ def opendocx(docx_file):
     mydoc = zipfile.ZipFile(docx_file)
     xmlcontent = mydoc.read('word/document.xml')
     document = etree.fromstring(xmlcontent)
-    return document
+    xmlcontent = mydoc.read('word/_rels/document.xml.rels')
+    relationships = etree.fromstring(xmlcontent)
+    return (document, relationships)
 
+def extract_docx(docx_file, destination_path):
+    mydoc = zipfile.ZipFile(docx_file)
+    mydoc.extractall(destination_path)
 
 def newdocument():
     document = makeelement('document')
@@ -947,6 +954,40 @@ def wordrelationships(relationshiplist):
         relationships.append(rel_elm)
         count += 1
     return relationships
+
+def includedocx(relationshiplist, destination_element, docx_filename):
+    '''Open a docx file, return a document XML tree'''
+    (include_document,include_relationships) = opendocx(docx_filename)
+    include_body = include_document.xpath('/w:document/w:body', namespaces=nsprefixes)[0]
+    
+    temp_media_dir = tempfile.mkdtemp()
+    extract_docx(docx_filename, temp_media_dir)
+    # Build up a little index of filenames.
+    file_index = {}
+    for rel in include_relationships:
+        if rel.attrib['Type'] == "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" \
+            and os.path.exists("%s/word/%s"%(temp_media_dir,rel.attrib['Target'])):
+            file_index[rel.attrib['Id']] = rel.attrib['Target']
+    log.debug("File index: %s"%file_index)
+    for include_elem in include_body:
+#         print getdocumenttext(include_elem)
+        
+        # Look for any images
+        images = include_elem.xpath('.//a:blip', namespaces=nsprefixes)
+        if len(images) > 0:
+            for image in images:
+                pprint.pprint(image.attrib)
+                relationshiplist, picpara = picture(relationshiplist,
+                 "%s/word/%s"%(temp_media_dir, file_index[image.attrib['{http://schemas.openxmlformats.org/officeDocument/2006/relationships}embed']]),
+                 'Test description', pixelwidth=4225405/12700, pixelheight=2274707/12700)
+                destination_element.append(picpara)
+        else:
+            log.debug(getdocumenttext(include_elem))
+            destination_element.append(include_elem)
+        
+    shutil.rmtree(temp_media_dir)
+    
+    return relationshiplist, destination_element
 
 
 def savedocx(document, coreprops, appprops, contenttypes, websettings, wordrelationships, output):
