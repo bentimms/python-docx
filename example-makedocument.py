@@ -11,9 +11,12 @@ Part of Python's docx module - http://github.com/mikemaccana/python-docx
 See LICENSE for licensing information.
 """
 
+import logging
 from docx import *
 
 if __name__ == '__main__':
+    
+    logging.basicConfig(level=logging.DEBUG)
     # Default set of relationshipships - the minimum components of a document
     relationships = relationshiplist()
 
