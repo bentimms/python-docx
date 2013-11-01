@@ -434,7 +434,7 @@ def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, tblLook='0400
     return table
 
 
-def picture(relationshiplist, picname, picdescription, pixelwidth=None, pixelheight=None, nochangeaspect=True, nochangearrowheads=True):
+def picture(relationshiplist, picpath, picdescription, pixelwidth=None, pixelheight=None, nochangeaspect=True, nochangearrowheads=True):
     '''Take a relationshiplist, picture file name, and return a paragraph containing the image
     and an updated relationshiplist'''
     # http://openxmldeveloper.org/articles/462.aspx
@@ -444,12 +444,18 @@ def picture(relationshiplist, picname, picdescription, pixelwidth=None, pixelhei
     media_dir = join(template_dir, 'word', 'media')
     if not os.path.isdir(media_dir):
         os.mkdir(media_dir)
-    shutil.copyfile(picname, join(media_dir, picname))
+    target_picpath = os.path.join(media_dir, os.path.basename(picpath))
+    while os.path.exists(target_picpath):
+        target_picpath = os.path.join(media_dir, "copy_%s"%os.path.basename(target_picpath))
+    log.debug("Copying %s to %s"%(picpath, target_picpath))
+    shutil.copyfile(picpath, target_picpath)
+    
+    target_picname = os.path.basename(target_picpath)
 
     # Check if the user has specified a size
     if not pixelwidth or not pixelheight:
         # If not, get info from the picture itself
-        pixelwidth, pixelheight = Image.open(picname).size[0:2]
+        pixelwidth, pixelheight = Image.open(picpath).size[0:2]
 
     # OpenXML measures on-screen objects in English Metric Units
     # 1cm = 36000 EMUs
@@ -462,7 +468,7 @@ def picture(relationshiplist, picname, picdescription, pixelwidth=None, pixelhei
     picrelid = 'rId'+str(len(relationshiplist)+1)
     relationshiplist.append([
         'http://schemas.openxmlformats.org/officeDocument/2006/relationships/image',
-        'media/'+picname])
+        'media/'+target_picname])
 
     # There are 3 main elements inside a picture
     # 1. The Blipfill - specifies how the image fills the picture area (stretch, tile, etc.)
@@ -477,7 +483,7 @@ def picture(relationshiplist, picname, picdescription, pixelwidth=None, pixelhei
     # 2. The non visual picture properties
     nvpicpr = makeelement('nvPicPr', nsprefix='pic')
     cnvpr = makeelement('cNvPr', nsprefix='pic',
-                        attributes={'id': '0', 'name': 'Picture 1', 'descr': picname})
+                        attributes={'id': '0', 'name': 'Picture 1', 'descr': target_picname})
     nvpicpr.append(cnvpr)
     cnvpicpr = makeelement('cNvPicPr', nsprefix='pic')
     cnvpicpr.append(makeelement('picLocks', nsprefix='a',
