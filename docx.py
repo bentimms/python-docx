@@ -1021,7 +1021,9 @@ def savedocx(document, coreprops, appprops, contenttypes, websettings, wordrelat
             archivename = templatefile[2:]
             log.info('Saving: %s', archivename)
             docxfile.write(templatefile, archivename)
-    shutil.rmtree('word/media')
+    print "Media dir: %s"%os.path.abspath('word/media')
+    if os.path.exists('word/media'):
+        shutil.rmtree('word/media')
     log.info('Saved new file to: %r', output)
     docxfile.close()
     os.chdir(prev_dir)  # restore previous working dir
