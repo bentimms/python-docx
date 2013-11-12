@@ -258,19 +258,19 @@
             <w:contextualSpacing/>
         </w:pPr>
     </w:style>
-    <w:style w:type="paragraph" w:styleId="BodyText">
-        <w:name w:val="Body Text"/>
+    <w:style w:type="paragraph" w:styleId="Body">
+        <w:name w:val="Body"/>
         <w:basedOn w:val="Normal"/>
-        <w:link w:val="BodyTextChar"/>
+        <w:link w:val="BodyChar"/>
         <w:rsid w:val="00BC48D5"/>
         <w:pPr>
             <w:spacing w:after="120"/>
         </w:pPr>
     </w:style>
-    <w:style w:type="character" w:customStyle="1" w:styleId="BodyTextChar">
+    <w:style w:type="character" w:customStyle="1" w:styleId="BodyChar">
         <w:name w:val="Body Text Char"/>
         <w:basedOn w:val="DefaultParagraphFont"/>
-        <w:link w:val="BodyText"/>
+        <w:link w:val="Body"/>
         <w:rsid w:val="00BC48D5"/>
     </w:style>
 	<w:style w:type="character" w:customStyle="1" w:styleId="Musicsymbols">
@@ -287,7 +287,7 @@
 	</w:style>
 	<w:style w:type="paragraph" w:customStyle="1" w:styleId="Tabletext">
 		<w:name w:val="Table text"/>
-		<w:basedOn w:val="BodyText"/>
+		<w:basedOn w:val="Body"/>
 		<w:qFormat/>
 		<w:rsid w:val="00DE6661"/>
 		<w:pPr>

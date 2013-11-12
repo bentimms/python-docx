@@ -148,7 +148,7 @@ def pagebreak(break_type='page', orient='portrait'):
     return pagebreak
 
 
-def paragraph(paratext, style='BodyText',rStyle=None, breakbefore=False, jc='left',textAlignment='top'):
+def paragraph(paratext, style='Body',rStyle=None, breakbefore=False, jc='left',textAlignment='top'):
     '''Make a new paragraph element, containing a run, and some text.
     Return the paragraph element.
 
