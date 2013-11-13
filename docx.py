@@ -444,22 +444,34 @@ def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, tblLook='0400
     return table
 
 def footnote(content):
-    footnote_filepath = join(template_dir, 'word', 'footnote.xml')
+    f_id = 0
+    footnote_filepath = join(template_dir, 'word', 'footnotes.xml')
     if os.path.exists(footnote_filepath):
         with open(footnote_filepath, 'r') as ff:
             read_data = ff.read()
         footnotes_xml = etree.fromstring(read_data)
-        f_id = footnotes_xml.xpath('max(.//footnote[id])') + 1
+        footnotes = footnotes_xml.xpath('.//w:footnote', namespaces=nsprefixes)
+        
+        log.debug("Existing footnotes: %s"%footnotes)
+        for footnote in footnotes:
+            log.debug("Existing footnote: %s {%s}"%(footnote, footnote.attrib))
+            if footnote.attrib['{http://schemas.openxmlformats.org/wordprocessingml/2006/main}id'] >= f_id:
+                f_id = int(footnote.attrib['{http://schemas.openxmlformats.org/wordprocessingml/2006/main}id']) + 1
     else:
         footnotes_xml = makeelement('footnotes')
-        f_id = 0
 
     if isinstance(content, etree._Element):
         footnotes_xml.append(content)
     else:
         footnote_xml = makeelement('footnote', nsprefix='w', attributes={'id': str(f_id)})
-        footnote_xml.append(paragraph('content'))
+        footnote_xml.append(paragraph(content,style='FootnoteText'))
+        footnotes_xml.append(footnote_xml)
         
+    # Save the footnotes XML
+    with open(footnote_filepath, 'w') as ff:
+        ff.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n")
+        ff.write(etree.tostring(footnotes_xml,pretty_print=True))
+    
     # make the reference
     return makeelement('footnoteReference', nsprefix='w', attributes={'id':str(f_id)})
 
