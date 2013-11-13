@@ -440,6 +440,25 @@ def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0, tblLook='0400
         table.append(row)
     return table
 
+def footnote(content):
+    footnote_filepath = join(template_dir, 'word', 'footnote.xml')
+    if os.path.exists(footnote_filepath):
+        with open(footnote_filepath, 'r') as ff:
+            read_data = ff.read()
+        footnotes_xml = etree.fromstring(read_data)
+        f_id = footnotes_xml.xpath('max(.//footnote[id])') + 1
+    else:
+        footnotes_xml = makeelement('footnotes')
+        f_id = 0
+
+    if isinstance(content, etree._Element):
+        footnotes_xml.append(content)
+    else:
+        footnote_xml = makeelement('footnote', nsprefix='w', attributes={'id': str(f_id)})
+        footnote_xml.append(paragraph('content'))
+        
+    # make the reference
+    return makeelement('footnoteReference', nsprefix='w', attributes={'id':str(f_id)})
 
 def picture(relationshiplist, picpath, picdescription, pixelwidth=None, pixelheight=None, nochangeaspect=True, nochangearrowheads=True):
     '''Take a relationshiplist, picture file name, and return a paragraph containing the image
@@ -960,7 +979,9 @@ def includedocx(relationshiplist, destination_element, docx_filename):
     (include_document,include_relationships) = opendocx(docx_filename)
     include_body = include_document.xpath('/w:document/w:body', namespaces=nsprefixes)[0]
     
+    # Create a temporary directory to store the contents of the docx to be included
     temp_media_dir = tempfile.mkdtemp()
+    # Extract the docx to be included to the temporary directory
     extract_docx(docx_filename, temp_media_dir)
     # Build up a little index of filenames.
     file_index = {}
@@ -969,6 +990,7 @@ def includedocx(relationshiplist, destination_element, docx_filename):
             and os.path.exists("%s/word/%s"%(temp_media_dir,rel.attrib['Target'])):
             file_index[rel.attrib['Id']] = rel.attrib['Target']
     log.debug("File index: %s"%file_index)
+    # Loop over the elements of the body
     for include_elem in include_body:
 #         print getdocumenttext(include_elem)
         
@@ -982,8 +1004,27 @@ def includedocx(relationshiplist, destination_element, docx_filename):
                  'Test description', pixelwidth=4225405/12700, pixelheight=2274707/12700)
                 destination_element.append(picpara)
         else:
+            # Look for any footnotes
+            footnote_refs = include_elem.xpath('.//w:footnoteReference',namespaces=nsprefixes)
+            if len(footnote_refs) > 0:
+                # Open the source footnotes XML file and create an etree object
+                with open(os.path.join(temp_media_dir, 'word', 'footnotes.xml'), 'r') as ff:
+                    read_data = ff.read()
+                footnotes_xml = etree.fromstring(read_data)
+                
+                # Loop over the source foot notes, adding them to the document and
+                # Updating the references in this document XML
+                for footnote_ref in footnote_refs:
+                    # Get the XML for this footnote's contents
+                    footnote_xml = footnotes_xml.xpath(".//w:footnote[id=%s]"%footnote_ref.attrib['id'])
+                    # Create the new footnote based on the old
+                    new_footnote_id = footnote(footnote_xml)
+                    # Update the reference in our include document
+                    footnote_ref.attrib['id'] = new_footnote_id
+
             log.debug(getdocumenttext(include_elem))
             destination_element.append(include_elem)
+        
         
     shutil.rmtree(temp_media_dir)
     
