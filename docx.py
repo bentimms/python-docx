@@ -1028,16 +1028,27 @@ def includedocx(relationshiplist, destination_element, docx_filename):
                 with open(os.path.join(temp_media_dir, 'word', 'footnotes.xml'), 'r') as ff:
                     read_data = ff.read()
                 footnotes_xml = etree.fromstring(read_data)
+                log.debug("Importing footnotes from %s "%footnotes_xml)
+                
+                for footnote_xml in footnotes_xml:
+                    log.debug("FOOTNOTE: %s"%footnote_xml.attrib)
                 
                 # Loop over the source foot notes, adding them to the document and
                 # Updating the references in this document XML
                 for footnote_ref in footnote_refs:
+                    log.debug("Footnote reference: %s"%footnote_ref)
                     # Get the XML for this footnote's contents
-                    footnote_xml = footnotes_xml.xpath(".//w:footnote[id=%s]"%footnote_ref.attrib['id'])
+                    xpath_expression = ".//w:footnote[@w:id={1}]".format(\
+                          '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}',
+                          footnote_ref.attrib['{http://schemas.openxmlformats.org/wordprocessingml/2006/main}id'])
+                    log.debug("Looking for ID using :%s"%xpath_expression)
+                    footnote_xml = footnotes_xml.xpath(xpath_expression,namespaces=nsprefixes)
+                    log.debug("Found footnote: %s"%footnote_xml)
                     # Create the new footnote based on the old
-                    new_footnote_id = footnote(footnote_xml)
+                    new_footnote_ref = footnote(footnote_xml[0])
                     # Update the reference in our include document
-                    footnote_ref.attrib['id'] = new_footnote_id
+                    footnote_ref.attrib['{http://schemas.openxmlformats.org/wordprocessingml/2006/main}id'] = \
+                        new_footnote_ref.attrib['{http://schemas.openxmlformats.org/wordprocessingml/2006/main}id']
 
             log.debug(getdocumenttext(include_elem))
             destination_element.append(include_elem)
