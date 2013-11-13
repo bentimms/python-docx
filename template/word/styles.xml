@@ -362,4 +362,37 @@
 			</w:trPr>
 		</w:tblStylePr>
 	</w:style>
+	<w:style w:type="paragraph" w:styleId="FootnoteText">
+		<w:name w:val="footnote text"/>
+		<w:basedOn w:val="Normal"/>
+		<w:link w:val="FootnoteTextChar"/>
+		<w:unhideWhenUsed/>
+		<w:rsid w:val="00A53932"/>
+		<w:pPr>
+			<w:spacing w:before="0" w:after="0" w:line="240" w:lineRule="auto"/>
+		</w:pPr>
+		<w:rPr>
+			<w:sz w:val="16"/>
+		</w:rPr>
+	</w:style>
+	<w:style w:type="character" w:customStyle="1" w:styleId="FootnoteTextChar">
+		<w:name w:val="Footnote Text Char"/>
+		<w:basedOn w:val="DefaultParagraphFont"/>
+		<w:link w:val="FootnoteText"/>
+		<w:rsid w:val="00A53932"/>
+		<w:rPr>
+			<w:rFonts w:ascii="Avenir Book" w:hAnsi="Avenir Book"/>
+			<w:sz w:val="16"/>
+		</w:rPr>
+	</w:style>
+	<w:style w:type="character" w:styleId="FootnoteReference">
+		<w:name w:val="footnote reference"/>
+		<w:basedOn w:val="DefaultParagraphFont"/>
+		<w:unhideWhenUsed/>
+		<w:rsid w:val="00A53932"/>
+		<w:rPr>
+			<w:vertAlign w:val="superscript"/>
+		</w:rPr>
+	</w:style>
+	
 </w:styles>
