@@ -1050,8 +1050,12 @@ def includedocx(relationshiplist, destination_element, docx_filename):
                     footnote_ref.attrib['{http://schemas.openxmlformats.org/wordprocessingml/2006/main}id'] = \
                         new_footnote_ref.attrib['{http://schemas.openxmlformats.org/wordprocessingml/2006/main}id']
 
-            log.debug(getdocumenttext(include_elem))
-            destination_element.append(include_elem)
+            if include_elem.tag != "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}sectPr":
+                log.debug("Adding Element <%s>"%include_elem.tag)
+                log.debug(getdocumenttext(include_elem))
+                destination_element.append(include_elem)
+            else:
+                log.debug("Skipping problematic sectPr?")
         
         
     shutil.rmtree(temp_media_dir)
