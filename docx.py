@@ -251,7 +251,10 @@ def contenttypes():
         '/word/styles.xml':       'application/vnd.openxmlformats-officedocu'
                                   'ment.wordprocessingml.styles+xml',
         '/word/webSettings.xml':  'application/vnd.openxmlformats-officedocu'
-                                  'ment.wordprocessingml.webSettings+xml'}
+                                  'ment.wordprocessingml.webSettings+xml',
+        '/word/footnotes.xml':    'application/vnd.openxmlformats-officedocu'
+                                  'ment.wordprocessingml.footnotes+xml'}
+
     for part in parts:
         types.append(makeelement('Override', nsprefix=None,
                                  attributes={'PartName': part,
@@ -949,6 +952,8 @@ def relationshiplist():
           'relationships/webSettings', 'webSettings.xml'],
          ['http://schemas.openxmlformats.org/officeDocument/2006/'
           'relationships/fontTable', 'fontTable.xml'],
+         ['http://schemas.openxmlformats.org/officeDocument/2006/'
+          'relationships/footnotes', 'footnotes.xml'],
          ['http://schemas.openxmlformats.org/officeDocument/2006/'
           'relationships/theme', 'theme/theme1.xml']]
     return relationshiplist
